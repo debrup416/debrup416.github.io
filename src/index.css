@@ -105,6 +105,24 @@ section[id], .card[id], .achv-sub[id] {
     color: #ff4da6;
     opacity: 1;
 }
+/* Resume button — pill, distinct from the section links */
+.navbar-links a.navbar-resume {
+    border: 1.5px solid #ff4da6;
+    border-radius: 20px;
+    padding: 6px 18px;
+    color: #ff4da6;
+    opacity: 1;
+    font-size: 1.05em;
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.navbar-links a.navbar-resume::after {
+    display: none; /* no underline animation on the button */
+}
+.navbar-links a.navbar-resume:hover {
+    background: #ff4da6;
+    color: #fff;
+    box-shadow: 0 0 14px rgba(255, 77, 166, 0.5);
+}
 
 /* Hamburger (hidden on desktop) */
 .navbar-toggle {
@@ -211,6 +229,39 @@ h1 {
     font-size: 1.2em;
     line-height: 1.5;
     opacity: 0.85;
+}
+/* Hero call-to-action buttons (resume view/download) */
+.hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 26px;
+}
+.btn-primary,
+.btn-ghost {
+    display: inline-block;
+    border-radius: 30px;
+    padding: 11px 26px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+.btn-primary {
+    background: #ff4da6;
+    color: #fff;
+}
+.btn-ghost {
+    border: 1.5px solid #ff4da6;
+    color: #ff4da6;
+}
+.btn-primary:hover,
+.btn-ghost:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(255, 77, 166, 0.45);
+}
+.btn-ghost:hover {
+    background: #ff4da6;
+    color: #fff;
 }
 @keyframes glow {
     from {
@@ -926,6 +977,9 @@ footer {
     }
     .hero-subtitle {
         margin: 18px auto 0;
+    }
+    .hero-cta {
+        justify-content: center;
     }
     .hero-photo-frame {
         width: 160px;

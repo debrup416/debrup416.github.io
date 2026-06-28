@@ -72,6 +72,18 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+          {/* Résumé is an external file, not a section — keep it out of scroll-spy */}
+          <li>
+            <a
+              className="navbar-resume"
+              href="/Debrup_Dey_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+            >
+              Resume
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
