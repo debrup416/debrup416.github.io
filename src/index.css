@@ -408,6 +408,102 @@ footer {
     opacity: 0.9;
 }
 
+/* Certificate thumbnail — a borderless button that opens the lightbox */
+.achv-thumb {
+    display: block;
+    width: 100%;
+    margin: 0 0 16px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.achv-thumb img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    object-position: center top;
+}
+.achv-thumb:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(255, 77, 166, 0.35);
+}
+
+/* Awards — compact 3-up grid (smaller than the default 2-up entry cards) */
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.awards-grid .achv-entry {
+    width: auto; /* let the grid size the cell, not the .achv-entry calc width */
+    padding: 14px;
+}
+.awards-grid .achv-thumb {
+    margin-bottom: 10px;
+}
+.awards-grid .achv-thumb img {
+    height: 110px;
+}
+.awards-grid .achv-entry-head h4 {
+    font-size: 0.95em;
+}
+.awards-grid .achv-entry-meta {
+    font-size: 0.78em;
+}
+.awards-grid .achv-entry p {
+    margin-top: 6px;
+    font-size: 0.82em;
+}
+
+/* Lightbox — full-screen overlay showing the certificate at full size */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    cursor: zoom-out;
+    animation: lightbox-fade 0.2s ease;
+}
+@keyframes lightbox-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    cursor: default;
+}
+.lightbox-close {
+    position: fixed;
+    top: 18px;
+    right: 26px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.4rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.lightbox-close:hover {
+    color: #ff4da6;
+    text-shadow: 0 0 12px rgba(255, 77, 166, 0.7);
+}
+
 /* Projects — card grid (add more projects = more cards) */
 .projects-grid {
     display: flex;
@@ -457,6 +553,9 @@ footer {
     }
     .achv-entry {
         width: 100%;
+    }
+    .awards-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     .project-card {
         width: 100%;
@@ -513,6 +612,9 @@ footer {
     }
     .card {
         padding: 22px;
+    }
+    .awards-grid {
+        grid-template-columns: 1fr;
     }
     .section-title {
         font-size: 1.6em;
