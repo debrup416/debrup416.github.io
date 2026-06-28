@@ -504,6 +504,197 @@ footer {
     text-shadow: 0 0 12px rgba(255, 77, 166, 0.7);
 }
 
+/* Project detail popup — text modal (shares the lightbox backdrop/fade) */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    animation: lightbox-fade 0.2s ease;
+}
+.modal-panel {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #1a1a35;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 32px 34px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+}
+.modal-title {
+    color: #ff4da6;
+    margin: 0 0 14px;
+    font-size: 1.5em;
+    padding-right: 32px; /* clears the close button */
+}
+
+/* Tech chips row */
+.modal-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.modal-chip {
+    background: rgba(111, 140, 255, 0.15);
+    border: 1px solid rgba(111, 140, 255, 0.35);
+    color: #aeb9ff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+}
+
+/* Key-fact stats strip */
+.modal-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0 4px;
+}
+.modal-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 8px;
+}
+.modal-stat-value {
+    color: #ff4da6;
+    font-size: 1.25em;
+    font-weight: 700;
+    line-height: 1.1;
+}
+.modal-stat-label {
+    margin-top: 4px;
+    font-size: 0.72em;
+    opacity: 0.75;
+}
+
+.modal-block {
+    margin-top: 24px;
+}
+.modal-block h4 {
+    color: #6f8cff;
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(111, 140, 255, 0.2);
+    font-size: 1.02em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.modal-li-label {
+    color: #ff4da6;
+}
+
+/* Architecture diagrams — clickable thumbnails inside the popup */
+.modal-diagrams {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+.modal-diagram {
+    margin: 0;
+}
+.modal-diagram-btn {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: #fff; /* diagrams are light-background, so frame them on white */
+    cursor: zoom-in;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.modal-diagram-btn img {
+    display: block;
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+}
+.modal-diagram-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(255, 77, 166, 0.35);
+}
+.modal-diagram figcaption {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #6f8cff;
+}
+
+/* Zoomed diagram sits above the project popup */
+.lightbox-over {
+    z-index: 210;
+}
+.modal-block p {
+    margin: 0;
+    line-height: 1.6;
+    opacity: 0.92;
+}
+.modal-block ul {
+    margin: 0;
+    padding-left: 20px;
+}
+.modal-block li {
+    margin-bottom: 6px;
+    line-height: 1.55;
+    opacity: 0.92;
+}
+.modal-link {
+    display: inline-block;
+    margin-top: 24px;
+    color: #ff4da6;
+    text-decoration: none;
+    font-weight: 700;
+    transition: text-shadow 0.3s ease;
+}
+.modal-link:hover {
+    text-shadow: 0 0 10px rgba(255, 77, 166, 0.8);
+}
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.modal-close:hover {
+    color: #ff4da6;
+    text-shadow: 0 0 12px rgba(255, 77, 166, 0.7);
+}
+
+/* Clickable project card affordances */
+.project-card.is-clickable {
+    cursor: pointer;
+}
+.project-more {
+    display: inline-block;
+    margin-top: 12px;
+    color: #ff4da6;
+    font-size: 0.85em;
+    font-weight: 700;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+.project-card.is-clickable:hover .project-more {
+    opacity: 1;
+}
+
 /* Projects — card grid (add more projects = more cards) */
 .projects-grid {
     display: flex;
@@ -615,6 +806,15 @@ footer {
     }
     .awards-grid {
         grid-template-columns: 1fr;
+    }
+    .modal-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .modal-diagrams {
+        grid-template-columns: 1fr;
+    }
+    .modal-panel {
+        padding: 26px 22px;
     }
     .section-title {
         font-size: 1.6em;
