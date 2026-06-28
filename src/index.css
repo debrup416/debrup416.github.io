@@ -141,8 +141,33 @@ section[id], .card[id], .achv-sub[id] {
     padding: 20px;
 }
 header {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 48px;
+    text-align: left;
     padding: 50px 0;
+}
+.hero-text {
+    flex: 1;
+    min-width: 0;
+    max-width: 640px;
+}
+/* Circular profile photo with a glowing pink ring (matches the name's glow) */
+.hero-photo {
+    flex-shrink: 0;
+    width: clamp(200px, 22vw, 290px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 77, 166, 0.6);
+    box-shadow: 0 0 25px rgba(255, 77, 166, 0.45), 0 0 50px rgba(255, 77, 166, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hero-photo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(255, 77, 166, 0.6), 0 0 60px rgba(255, 77, 166, 0.3);
 }
 h1 {
     margin: 0;
@@ -163,7 +188,7 @@ h1 {
     animation: glow 2s ease-in-out infinite alternate;
 }
 .hero-subtitle {
-    margin: 18px auto 0;
+    margin: 18px 0 0;
     max-width: 700px;
     font-size: 1.2em;
     line-height: 1.5;
@@ -739,6 +764,21 @@ footer {
 
 /* Tablet and below: stack columns + switch to hamburger nav */
 @media (max-width: 768px) {
+    /* Stack the hero: photo on top (it's the 2nd DOM child), text centered below */
+    header {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 28px;
+    }
+    .hero-text {
+        max-width: 100%;
+    }
+    .hero-subtitle {
+        margin: 18px auto 0;
+    }
+    .hero-photo {
+        width: 160px;
+    }
     .card {
         width: 100%;
     }
@@ -791,6 +831,9 @@ footer {
     }
     header {
         padding: 30px 0;
+    }
+    .hero-photo {
+        width: 130px;
     }
     .hero-name {
         font-size: 2.4rem;
