@@ -1,4 +1,4 @@
-import profilePic from '../assets/profile.png'
+import profilePic from '../assets/profile.jpg'
 
 export default function Header() {
   return (
@@ -10,7 +10,9 @@ export default function Header() {
         </h1>
         <p className="hero-subtitle">Specialist Programmer (L2) @ Infosys · Generative AI &amp; Agentic AI Engineer</p>
       </div>
-      <img className="hero-photo" src={profilePic} alt="Debrup Dey" />
+      <div className="hero-photo-frame">
+        <img className="hero-photo" src={profilePic} alt="Debrup Dey" />
+      </div>
     </header>
   )
 }

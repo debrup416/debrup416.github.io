@@ -154,20 +154,38 @@ header {
     min-width: 0;
     max-width: 640px;
 }
-/* Circular profile photo with a glowing pink ring (matches the name's glow) */
-.hero-photo {
+/* Circular profile photo with a glowing pink ring (matches the name's glow).
+   The frame holds the ring + glow + vignette; the img fills and is cropped. */
+.hero-photo-frame {
+    position: relative;
     flex-shrink: 0;
     width: clamp(200px, 22vw, 290px);
     aspect-ratio: 1;
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
     border: 3px solid rgba(255, 77, 166, 0.6);
     box-shadow: 0 0 25px rgba(255, 77, 166, 0.45), 0 0 50px rgba(255, 77, 166, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.hero-photo:hover {
+.hero-photo-frame:hover {
     transform: translateY(-5px);
     box-shadow: 0 0 30px rgba(255, 77, 166, 0.6), 0 0 60px rgba(255, 77, 166, 0.3);
+}
+/* Vignette: bright photo edges fade into the dark particle field */
+.hero-photo-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, transparent 55%, rgba(13, 13, 31, 0.55) 100%);
+}
+.hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%; /* focus on the face (upper-center) */
+    transform: scale(1.12); /* tighten the crop, less background */
 }
 h1 {
     margin: 0;
@@ -236,6 +254,9 @@ h1 {
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.9em;
+}
+.interest-icon {
+    font-size: 1.05em;
 }
 /* Grouped skills (AI/ML, Languages, ...) */
 .skill-group {
@@ -605,6 +626,16 @@ footer {
     opacity: 0.75;
 }
 
+/* Single-stat row (e.g. LeetCode ranking) — not the 4-col grid */
+.lc-stat-row {
+    display: flex;
+    margin: 20px 0 4px;
+}
+.lc-stat-row .modal-stat {
+    min-width: 150px;
+    padding: 14px 20px;
+}
+
 .modal-block {
     margin-top: 24px;
 }
@@ -703,8 +734,9 @@ footer {
     text-shadow: 0 0 12px rgba(255, 77, 166, 0.7);
 }
 
-/* Clickable project card affordances */
-.project-card.is-clickable {
+/* Clickable card affordances (projects + achievement entries) */
+.project-card.is-clickable,
+.achv-entry.is-clickable {
     cursor: pointer;
 }
 .project-more {
@@ -716,7 +748,8 @@ footer {
     opacity: 0.85;
     transition: opacity 0.3s ease;
 }
-.project-card.is-clickable:hover .project-more {
+.project-card.is-clickable:hover .project-more,
+.achv-entry.is-clickable:hover .project-more {
     opacity: 1;
 }
 
@@ -776,7 +809,7 @@ footer {
     .hero-subtitle {
         margin: 18px auto 0;
     }
-    .hero-photo {
+    .hero-photo-frame {
         width: 160px;
     }
     .card {
@@ -832,7 +865,7 @@ footer {
     header {
         padding: 30px 0;
     }
-    .hero-photo {
+    .hero-photo-frame {
         width: 130px;
     }
     .hero-name {

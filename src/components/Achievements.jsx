@@ -38,6 +38,23 @@ const groups = [
     ],
   },
   {
+    id: 'coding',
+    title: 'Competitive Programming',
+    entries: [
+      {
+        title: 'LeetCode',
+        meta: 'Top 9.01%',
+        description: 'Ranked in the top 9% of users worldwide on LeetCode.',
+        popup: {
+          handle: '@writtensyntax',
+          rank: 'Top 9.01%',
+          url: 'https://leetcode.com/u/writtensyntax/',
+          blurb: 'Ranked in the top 9% of users worldwide on LeetCode — consistently solving algorithmic and data-structure problems across Easy, Medium and Hard difficulty.',
+        },
+      },
+    ],
+  },
+  {
     id: 'mentorship',
     title: 'Mentorship',
     entries: [
@@ -49,16 +66,20 @@ const groups = [
 export default function Achievements() {
   // The award entry shown full-size in the lightbox, or null when closed.
   const [lightbox, setLightbox] = useState(null)
+  // The entry whose info popup is open, or null when closed.
+  const [modal, setModal] = useState(null)
 
-  // Close the lightbox on Escape (only while it's open).
+  // Close the lightbox / popup on Escape (only while one is open).
   useEffect(() => {
-    if (!lightbox) return
+    if (!lightbox && !modal) return
     const onKey = (e) => {
-      if (e.key === 'Escape') setLightbox(null)
+      if (e.key !== 'Escape') return
+      setLightbox(null)
+      setModal(null)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [lightbox])
+  }, [lightbox, modal])
 
   return (
     <section id="achievements">
@@ -69,7 +90,23 @@ export default function Achievements() {
           <h3 className="achv-subtitle">{group.title}</h3>
           <div className={`achv-entries${group.id === 'awards' ? ' awards-grid' : ''}`}>
             {group.entries.map((entry, i) => (
-              <div className="achv-entry" key={i}>
+              <div
+                className={`achv-entry${entry.popup ? ' is-clickable' : ''}`}
+                key={i}
+                onClick={entry.popup ? () => setModal(entry) : undefined}
+                role={entry.popup ? 'button' : undefined}
+                tabIndex={entry.popup ? 0 : undefined}
+                onKeyDown={
+                  entry.popup
+                    ? (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault()
+                          setModal(entry)
+                        }
+                      }
+                    : undefined
+                }
+              >
                 {entry.image && (
                   <button
                     className="achv-thumb"
@@ -84,6 +121,7 @@ export default function Achievements() {
                   <span className="achv-entry-meta">{entry.meta}</span>
                 </div>
                 <p>{entry.description}</p>
+                {entry.popup && <span className="project-more">Click for details →</span>}
               </div>
             ))}
           </div>
@@ -105,6 +143,45 @@ export default function Achievements() {
             alt={lightbox.title}
             onClick={(e) => e.stopPropagation()}
           />
+        </div>
+      )}
+
+      {modal && (
+        <div className="modal" onClick={() => setModal(null)}>
+          <div className="modal-panel" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="modal-close"
+              onClick={() => setModal(null)}
+              aria-label="Close details"
+            >
+              &times;
+            </button>
+            <h3 className="modal-title">{modal.title}</h3>
+
+            <div className="modal-chips">
+              <span className="modal-chip">{modal.popup.handle}</span>
+            </div>
+
+            <div className="lc-stat-row">
+              <div className="modal-stat">
+                <span className="modal-stat-value">{modal.popup.rank}</span>
+                <span className="modal-stat-label">Global ranking</span>
+              </div>
+            </div>
+
+            <div className="modal-block">
+              <p>{modal.popup.blurb}</p>
+            </div>
+
+            <a
+              href={modal.popup.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-link"
+            >
+              Visit profile ↗
+            </a>
+          </div>
         </div>
       )}
     </section>

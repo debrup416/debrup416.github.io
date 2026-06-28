@@ -3,6 +3,7 @@ const contacts = [
   { icon: '✉️', label: '1debrupdey1@gmail.com', href: 'mailto:1debrupdey1@gmail.com' },
   { icon: '🔗', label: 'linkedin.com/in/debrup-dey', href: 'https://linkedin.com/in/debrup-dey' },
   { icon: '💻', label: 'github.com/debrup416', href: 'https://github.com/debrup416' },
+  { icon: '🧩', label: 'leetcode.com/u/writtensyntax', href: 'https://leetcode.com/u/writtensyntax/' },
 ]
 
 export default function Contact() {
