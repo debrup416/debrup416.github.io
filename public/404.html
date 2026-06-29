@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page not found · Debrup Dey</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0d0d1f" />
+    <!-- Fallback redirect to the homepage after ~3s if JS is disabled -->
+    <meta http-equiv="refresh" content="3;url=/" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(ellipse at 50% 40%, #262657 0%, #16162e 55%, #0d0d1f 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.5rem;
+        }
+        .wrap { max-width: 32rem; }
+        .code {
+            font-size: clamp(5rem, 22vw, 10rem);
+            font-weight: 700;
+            line-height: 1;
+            color: #ff4da6;
+            text-shadow: 0 0 10px rgba(255, 77, 166, 0.7),
+                         0 0 30px rgba(255, 77, 166, 0.5),
+                         0 0 60px rgba(255, 77, 166, 0.3);
+        }
+        h1 {
+            font-size: clamp(1.25rem, 5vw, 1.75rem);
+            font-weight: 600;
+            margin-top: 0.75rem;
+        }
+        p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.75rem;
+            font-size: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 1.75rem;
+            padding: 0.7rem 1.6rem;
+            border-radius: 999px;
+            background: #ff4da6;
+            color: #0d0d1f;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 0 12px rgba(255, 77, 166, 0.6);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 77, 166, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="code">404</div>
+        <h1>Page not found</h1>
+        <p>That page doesn't exist. Taking you back home…</p>
+        <a class="btn" href="/">Go to homepage</a>
+    </div>
+    <script>
+        // JS fallback redirect (covers cases where meta-refresh is ignored).
+        setTimeout(function () { window.location.replace('/'); }, 3000);
+    </script>
+</body>
+</html>
