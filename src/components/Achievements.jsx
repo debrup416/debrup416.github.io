@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 // Award certificate images — imported so Vite bundles + fingerprints them.
+import riseAward from '../assets/awards/rise.png'
 import wowAward from '../assets/awards/wow-award.jpg'
 import stockEsop from '../assets/awards/stock-esop.jpg'
 import insta2023 from '../assets/awards/insta-2023.jpg'
@@ -14,6 +15,7 @@ const groups = [
     id: 'awards',
     title: 'Awards & Recognition',
     entries: [
+      { title: 'STG RISE Award — Technocrat', meta: 'Q1 FY27', image: riseAward, description: 'Certificate of Achievement (Individual Category) from the STG unit — recognized for exemplary performance, grasp of core processes, team collaboration and excellence in delivery.' },
       { title: 'WOW Award — Infosys RISE', meta: 'Q3 FY24', image: wowAward, description: 'Recognized for significant impact, dedication and hard work — STG Unit.' },
       { title: 'Stock Award (ESOP)', meta: 'Infosys', image: stockEsop, description: 'Employee Stock Ownership Program — for exemplary contribution and commitment. Signed by CEO Salil Parekh.' },
       { title: 'Insta Award', meta: 'Sep 2023', image: insta2023, description: 'GenAI POCs and a POV on text-embedding models for question-answering and summarization with small fine-tuned models.' },

@@ -9,7 +9,7 @@ export default function Header() {
           <span className="hero-greeting">Hi, I'm</span>{' '}
           <span className="hero-name">Debrup</span>
         </h1>
-        <p className="hero-subtitle">Specialist Programmer (L2) @ Infosys · Generative AI &amp; Agentic AI Engineer</p>
+        <p className="hero-subtitle">Senior AI Engineer @ Brahma AI (Prime Focus Technologies) · Generative &amp; Agentic AI</p>
         {SHOW_RESUME && (
           <div className="hero-cta">
             <a

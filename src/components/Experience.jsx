@@ -1,9 +1,20 @@
-// Experience — Infosys STG projects. Edit this array to update the timeline.
+// Experience — project timeline across Brahma AI and Infosys STG. Edit this array to update it.
 const experiences = [
+  {
+    title: 'Sports Replay Detection',
+    org: 'Brahma AI · Prime Focus Technologies',
+    date: 'Aug 2026 – Present',
+    tech: 'Python · PySceneDetect · OpenCV · Clustering · Computer Vision',
+    bullets: [
+      'Built an end-to-end replay detection pipeline that identifies replay events in broadcast video across all sports, segmenting the feed into shots with PySceneDetect scene-transition detection.',
+      "Localized replay boundaries using normalized cross-correlation (NCC) template matching on transition frames, then clustered shot signatures to learn each broadcaster's recurring replay-wipe pattern — generalizing across sports and broadcast styles instead of hand-tuned per-sport heuristics.",
+      'Achieved 93% detection at IoU@0.50 and 81% at IoU@0.75 over 200+ hours of broadcast footage, replacing manual replay tagging in the downstream video pipeline.',
+    ],
+  },
   {
     title: 'Code Intelligence Platform',
     org: 'Infosys STG',
-    date: 'Apr 2025 – Present',
+    date: 'Apr 2025 – Jul 2026',
     tech: 'Python · Tree-sitter · Neo4j · Qdrant · MCP · Google ADK · LLMs · FastAPI',
     bullets: [
       'Architected a platform that turns 50+ repos into a searchable code knowledge graph — 1M+ relationships linking functions, files, and services.',

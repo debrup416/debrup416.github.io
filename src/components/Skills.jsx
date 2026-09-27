@@ -4,6 +4,10 @@ const skillGroups = [
     items: ['RAG', 'Agentic RAG', 'BM25 / Hybrid Search', 'Embeddings', 'Prompt Engineering', 'Evals', 'LlamaIndex', 'LangChain', 'LangGraph', 'Google ADK', 'MCP', 'Azure AI', 'LLMs'],
   },
   {
+    category: 'Computer Vision',
+    items: ['Shot-Boundary Detection', 'Template Matching (NCC)', 'Clustering', 'PySceneDetect', 'OpenCV', 'Video Processing'],
+  },
+  {
     category: 'Languages',
     items: ['Python', 'C++', 'SQL'],
   },
